@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 12.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="12.0">
+ <Targets>
+  <Target Name="C:\Users\Petre\documents\visual studio 2013\Projects\Neo4JProject\Neo4JController\bin\Debug\Neo4JController.dll">
+   <Modules>
+    <Module Name="neo4jcontroller.dll">
+     <Namespaces>
+      <Namespace Name="Neo4JController.Controllers">
+       <Types>
+        <Type Name="MainViewController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetAllLocationsThatStartWith(System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Provide correct arguments to formatting methods" Category="Microsoft.Usage" CheckId="CA2241" Status="Active" Created="2017-01-20 18:38:32Z" FixCategory="DependsOnFix">
+             <Issue Name="UnexpectedFormatStringCharacter" Certainty="75" Level="Warning" Path="c:\Users\Petre\Documents\Visual Studio 2013\Projects\Neo4JProject\Neo4JController\Controllers" File="MainViewController.cs" Line="246">Method 'MainViewController.GetAllLocationsThatStartWith(string)' calls 'string.Format(string, object, object)' with a format string that contains an unexpected character '"}"' at index '34'. The provided format string is: '"Locations where name starts with {} found : {0}"'</Issue>
+             <Issue Name="UnexpectedFormatStringCharacter" Certainty="75" Level="Warning" Path="c:\Users\Petre\Documents\Visual Studio 2013\Projects\Neo4JProject\Neo4JController\Controllers" File="MainViewController.cs" Line="247">Method 'MainViewController.GetAllLocationsThatStartWith(string)' calls 'string.Format(string, object, object)' with a format string that contains an unexpected character '"}"' at index '34'. The provided format string is: '"Locations where name starts with {} found : {0}"'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetAllUsersWhereNameStartWith(System.String)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Provide correct arguments to formatting methods" Category="Microsoft.Usage" CheckId="CA2241" Status="Active" Created="2017-01-20 18:38:32Z" FixCategory="DependsOnFix">
+             <Issue Name="UnexpectedFormatStringCharacter" Certainty="75" Level="Warning" Path="c:\Users\Petre\Documents\Visual Studio 2013\Projects\Neo4JProject\Neo4JController\Controllers" File="MainViewController.cs" Line="272">Method 'MainViewController.GetAllUsersWhereNameStartWith(string)' calls 'string.Format(string, object, object)' with a format string that contains an unexpected character '"}"' at index '30'. The provided format string is: '"Users where name starts with {} found : {0}"'</Issue>
+             <Issue Name="UnexpectedFormatStringCharacter" Certainty="75" Level="Warning" Path="c:\Users\Petre\Documents\Visual Studio 2013\Projects\Neo4JProject\Neo4JController\Controllers" File="MainViewController.cs" Line="273">Method 'MainViewController.GetAllUsersWhereNameStartWith(string)' calls 'string.Format(string, object, object)' with a format string that contains an unexpected character '"}"' at index '30'. The provided format string is: '"Users where name starts with {} found : {0}"'</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Neo4JController.Helpers">
+       <Types>
+        <Type Name="PrinterHelper" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#WriteToFile(System.Text.StringBuilder)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-01-20 18:38:32Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Petre\Documents\Visual Studio 2013\Projects\Neo4JProject\Neo4JController\Helpers" File="PrinterHelper.cs" Line="75">Object 'file' can be disposed more than once in method 'PrinterHelper.WriteToFile(StringBuilder)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 75</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Do not dispose objects multiple times</Name>
+   <Description>A correctly implemented Dispose method can be called multiple times without throwing an exception. However, this is not guaranteed and to avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.</Description>
+   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 75</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="Provide correct arguments to formatting methods" Category="Microsoft.Usage" CheckId="CA2241">
+   <Name>Provide correct arguments to formatting methods</Name>
+   <Description>Provide the correct number of arguments to String.Format calls.</Description>
+   <Resolution Name="UnexpectedFormatStringCharacter">Method {0} calls {1} with a format string that contains an unexpected character '{2}' at index '{3}'. The provided format string is: '{4}'</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182361.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="12.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Title>//title</Title>
+  <DescriptionId>detailscontent</DescriptionId>
+  <ReviewSummary>.//div[@class='review_comment_box']</ReviewSummary>
+  <UserProfile>.//div[@class='review_summary_text']</UserProfile>
+  <PositiveComment>.//div[@class='review_positive_comment']</PositiveComment>
+  <NegativeComment>.//div[@class='review_negative_comment']</NegativeComment>
+  <UserGrade>.//span[@class='rev_comment_general_note']</UserGrade>
+  <RoomsBase>//div[@class='fereastra']</RoomsBase>
+  <RoomType>.//div[@class='tip_camera']</RoomType>
+  <HasBathroom>.//div[@class='baie']</HasBathroom>
+  <Rooms>.//div[@class='camere']</Rooms>
+  <RoomPrice>.//div[@class='pret']</RoomPrice>
+</Settings>
