@@ -60,6 +60,7 @@ namespace Neo4JController.Helpers
             theDialog.Title = "Open Text File";
             theDialog.Filter = "Word document|*.doc";
             theDialog.InitialDirectory = @"C:\";
+
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
                 _filePath = theDialog.FileName;
@@ -69,12 +70,13 @@ namespace Neo4JController.Helpers
             lock (locker)
             {
                 using (FileStream file = new FileStream(_filePath, FileMode.Append, FileAccess.Write, FileShare.Read))
-                using (StreamWriter writer = new StreamWriter(file, Encoding.Unicode))
                 {
-                    writer.Write(text.ToString());
+                    using (StreamWriter writer = new StreamWriter(file, Encoding.Unicode))
+                    {
+                        writer.Write(text.ToString());
+                    }
                 }
             }
-
         }
     }
 }

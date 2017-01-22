@@ -1,5 +1,4 @@
-﻿using Neo4JController.Controllers;
-using Neo4JController.Interfaces;
+﻿using Neo4JController.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +29,7 @@ namespace Neo4J.View
 
         private void btnStartAnalysis_Click(object sender, EventArgs e)
         {
-             pgbNeo4JQuery.Visible = true;
+            pgbNeo4JQuery.Visible = true;
             var thread = new Thread(() =>
             {
                 _service.ExecuteNeo4JActions();
@@ -38,10 +37,13 @@ namespace Neo4J.View
                 {
                     try
                     {
-                        new ResultsGridView(_service.GetUsersAvarage(), _service.GetAllLocationsDataSource(),
-                            _service.GetPositiveDataSource(), _service.GetNegativeDataSource()).Show();
-                        _service.PrintRaport();
-                        pgbNeo4JQuery.Visible = false;
+                        using(var resultGrid = new ResultsGridView(_service.GetUsersAvarage(), _service.GetAllLocationsDataSource(),
+                            _service.GetPositiveDataSource(), _service.GetNegativeDataSource()))
+                        {
+                            resultGrid.Show();
+                            _service.PrintRaport();
+                            pgbNeo4JQuery.Visible = false;
+                        }
                     }
                     catch (Exception ex) 
                     {
@@ -166,7 +168,7 @@ namespace Neo4J.View
             }
             else
             {
-                btnClear.Enabled = true;
+                btnClear.Enabled = false;
             }
             return returnValue;
         }

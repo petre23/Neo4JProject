@@ -8,51 +8,51 @@ namespace Neo4JModel.DAO.SqlDAO
 {
     public class SqlConstants
     {
-        public static readonly string LOCATION_NAME_COLUMN = "Nume";
-        public static readonly string LOCATION_DESCRIPTION_COLUMN = "Description";
-        public static readonly string UNIQUE_KEY_COLUMN = "UniqueKey";
-        public static readonly string COMMENT_POSITIVE_COMMENT_COLUMN = "PositiveComment";
-        public static readonly string COMMENT_NEGATIVE_COMMENT_COLUMN = "NegativeComment";
-        public static readonly string COMMENT_USER_GRADE_COLUMN = "UserGrade";
-        public static readonly string ROOM_NUMBER_COLUMN = "NumarCamera";
-        public static readonly string ROOM_TYPE_COLUMN = "TipCamere";
-        public static readonly string ROOM_HAS_BATH_COLUMN = "Baie";
-        public static readonly string ROOM_PRICE_COLUMN = "Pret";
-        public static readonly string ROOM_FOR_COLUMN = "ROOM_FOR";
-        public static readonly string USER_NAME_COLUMN = "UserName";
-        public static readonly string USER_PERIOD_COLUMN = "PerioadaSejur";
-        public static readonly string USER_HAS_VISITED_COLUMN = "Has_Visited";
-        public static readonly string AUTHOR_COLUMN = "userID";
-        public static readonly string AVARAGE_COLUMN = "Avarage";
+        public const string LOCATION_NAME_COLUMN = "Nume";
+        public const string LOCATION_DESCRIPTION_COLUMN = "Description";
+        public const string UNIQUE_KEY_COLUMN = "UniqueKey";
+        public const string COMMENT_POSITIVE_COMMENT_COLUMN = "PositiveComment";
+        public const string COMMENT_NEGATIVE_COMMENT_COLUMN = "NegativeComment";
+        public const string COMMENT_USER_GRADE_COLUMN = "UserGrade";
+        public const string ROOM_NUMBER_COLUMN = "NumarCamera";
+        public const string ROOM_TYPE_COLUMN = "TipCamere";
+        public const string ROOM_HAS_BATH_COLUMN = "Baie";
+        public const string ROOM_PRICE_COLUMN = "Pret";
+        public const string ROOM_FOR_COLUMN = "ROOM_FOR";
+        public const string USER_NAME_COLUMN = "UserName";
+        public const string USER_PERIOD_COLUMN = "PerioadaSejur";
+        public const string USER_HAS_VISITED_COLUMN = "Has_Visited";
+        public const string AUTHOR_COLUMN = "userID";
+        public const string AVARAGE_COLUMN = "Avarage";
 
-        public static readonly string LOCATION_NAME_PARAMETER = "@Nume";
-        public static readonly string LOCATION_DESCRIPTION_PARAMETER = "@Description";
-        public static readonly string UNIQUE_KEY_PARAMETER = "@UniqueKey";
-        public static readonly string COMMENT_POSITIVE_COMMENT_PARAMETER = "@PositiveComment";
-        public static readonly string COMMENT_NEGATIVE_COMMENT_PARAMETER = "@NegativeComment";
-        public static readonly string COMMENT_USER_GRADE_PARAMETER = "@UserGrade";
-        public static readonly string ROOM_NUMBER_PARAMETER = "@NumarCamera";
-        public static readonly string ROOM_TYPE_PARAMETER = "@TipCamere";
-        public static readonly string ROOM_HAS_BATH_PARAMETER = "@Baie";
-        public static readonly string ROOM_PRICE_PARAMETER = "@Pret";
-        public static readonly string ROOM_FOR_PARAMETER = "@ROOM_FOR";
-        public static readonly string USER_NAME_PARAMETER = "@UserName";
-        public static readonly string USER_PERIOD_PARAMETER = "@PerioadaSejur";
-        public static readonly string USER_HAS_VISITED_PARAMETER = "@Has_Visited";
-        public static readonly string AUTHOR_PARAMETER = "@userID";
+        public const string LOCATION_NAME_PARAMETER = "@Nume";
+        public const string LOCATION_DESCRIPTION_PARAMETER = "@Description";
+        public const string UNIQUE_KEY_PARAMETER = "@UniqueKey";
+        public const string COMMENT_POSITIVE_COMMENT_PARAMETER = "@PositiveComment";
+        public const string COMMENT_NEGATIVE_COMMENT_PARAMETER = "@NegativeComment";
+        public const string COMMENT_USER_GRADE_PARAMETER = "@UserGrade";
+        public const string ROOM_NUMBER_PARAMETER = "@NumarCamera";
+        public const string ROOM_TYPE_PARAMETER = "@TipCamere";
+        public const string ROOM_HAS_BATH_PARAMETER = "@Baie";
+        public const string ROOM_PRICE_PARAMETER = "@Pret";
+        public const string ROOM_FOR_PARAMETER = "@ROOM_FOR";
+        public const string USER_NAME_PARAMETER = "@UserName";
+        public const string USER_PERIOD_PARAMETER = "@PerioadaSejur";
+        public const string USER_HAS_VISITED_PARAMETER = "@Has_Visited";
+        public const string AUTHOR_PARAMETER = "@userID";
 
 
-        public static readonly string GET_ALL_LOCATIONS_QUERY = "SELECT * FROM Locatie";
-        public static readonly string GET_ALL_LOCATIONS_THAT_START_WITH_QUERY = "SELECT * FROM Locatie WHERE Nume LIKE @Nume";
-        public static readonly string GET_ALL_USERS_QUERY = "SELECT * FROM SYS_User";
-        public static readonly string GET_ALL_COMMENTS_QUERY = "SELECT * FROM COMMENT";
-        public static readonly string GET_ALL_USER_FOR_LOCATION_QUERY = "SELECT * FROM SYS_USER WHERE locationID = @Nume";
-        public static readonly string GET_ALL_COMMENTS_FOR_USER_QUERY = "SELECT * FROM COMMENT WHERE userID = @userID";
-        public static readonly string GET_ALL_COMMENTS_WITH_POSITIVE_FEEDBACK_QUERY = "SELECT * FROM COMMENT WHERE PositiveComment IS NOT NULL";
-        public static readonly string GET_ALL_COMMENTS_WITH_NEGATIVE_FEEDBACK_QUERY = "SELECT * FROM COMMENT WHERE NegativeComment IS NOT NULL";
-        public static readonly string GET_USER_GRADES_AVARAGE_QUERY = "SELECT AVG(CAST(Comment.UserGrade AS float))as Avarage FROM COMMENT";
-        public static readonly string GET_USER_WHERE_NAME_STARTS_WITH_QUERY = "SELECT * FROM SYS_User WHERE UserName LIKE @UserName";
-        public static readonly string GET_LOCATIONS_WITH_MORE_THAN_TEN_POSITIVE_COMMENTS = @"   DECLARE @NumeLocatie varchar(250),@Result int
+        public const string GET_ALL_LOCATIONS_QUERY = "SELECT * FROM Locatie";
+        public const string GET_ALL_LOCATIONS_THAT_START_WITH_QUERY = "SELECT * FROM Locatie WHERE Nume LIKE @Nume";
+        public const string GET_ALL_USERS_QUERY = "SELECT * FROM SYS_User";
+        public const string GET_ALL_COMMENTS_QUERY = "SELECT * FROM COMMENT";
+        public const string GET_ALL_USER_FOR_LOCATION_QUERY = "SELECT * FROM SYS_USER WHERE locationID = @Nume";
+        public const string GET_ALL_COMMENTS_FOR_USER_QUERY = "SELECT * FROM COMMENT WHERE userID = @userID";
+        public const string GET_ALL_COMMENTS_WITH_POSITIVE_FEEDBACK_QUERY = "SELECT * FROM COMMENT WHERE PositiveComment IS NOT NULL";
+        public const string GET_ALL_COMMENTS_WITH_NEGATIVE_FEEDBACK_QUERY = "SELECT * FROM COMMENT WHERE NegativeComment IS NOT NULL";
+        public const string GET_USER_GRADES_AVARAGE_QUERY = "SELECT AVG(CAST(Comment.UserGrade AS float))as Avarage FROM COMMENT";
+        public const string GET_USER_WHERE_NAME_STARTS_WITH_QUERY = "SELECT * FROM SYS_User WHERE UserName LIKE @UserName";
+        public const string GET_LOCATIONS_WITH_MORE_THAN_TEN_POSITIVE_COMMENTS = @"   DECLARE @NumeLocatie varchar(250),@Result int
                                                                                                 DECLARE @tempTable table(Nume varchar(250))
 
                                                                                                 DECLARE cursor_locatii CURSOR for 
@@ -76,7 +76,7 @@ namespace Neo4JModel.DAO.SqlDAO
                                                                                                 Select * from @tempTable
                                                                                                 Delete from @tempTable";
 
-        public static readonly string GET_LOCATIONS_WITH_MORE_THAN_TEN_NEGATIVE_COMMENTS = @"   DECLARE @NumeLocatie varchar(250),@Result int
+        public const string GET_LOCATIONS_WITH_MORE_THAN_TEN_NEGATIVE_COMMENTS = @"   DECLARE @NumeLocatie varchar(250),@Result int
                                                                                                 DECLARE @tempTable table(Nume varchar(250))
 
                                                                                                 DECLARE cursor_locatii CURSOR for 

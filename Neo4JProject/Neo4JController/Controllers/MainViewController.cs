@@ -147,7 +147,7 @@ namespace Neo4JController.Controllers
 
         private void ExecuteDatabaseNeo4jAnalyser()
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            _watch = System.Diagnostics.Stopwatch.StartNew();
             GetAllLocations();
             GetAllUses();
             GetAllComments();
@@ -159,10 +159,8 @@ namespace Neo4JController.Controllers
             GetDataWhereLocationStratsWith();
             GetLocationsWithDescriptionContaining();
             GetUsersWithNameStart();
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            _view.AddToTextBox(string.Format("Elapsed time : {0} ms", elapsedMs.ToString()));
-            _printHelper.AddTextToBuilder(string.Format("Total Time : {0} ms",elapsedMs.ToString()));
+            _watch.Stop();
+            WriteInfo("Elapsed time : {0} ms");
         }
 
         public void PrintRaport() 
@@ -221,43 +219,43 @@ namespace Neo4JController.Controllers
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var locations = _neo4JController.GetAllLocations();
             _allLocations = new BindingList<Locatie>(locations);
-            ExecuteNeo4JActionForList<Locatie>("Processing all Locations : ", locations);
+            ExecuteNeo4JActionForList<Locatie>("Processed all Locations : ", locations);
         }
 
         private void GetAllLocationsThatStartWith(string name)
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            ExecuteNeo4JActionForList<Locatie>(string.Format("Processing all Locations where name starts with:{0} ",name), _neo4JController.GetAllLocationsWherNameStartsWith(name));
+            ExecuteNeo4JActionForList<Locatie>(string.Format("Processed all Locations where name starts with:{0} ",name), _neo4JController.GetAllLocationsWherNameStartsWith(name));
         }
 
         private void GetAllUses()
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            ExecuteNeo4JActionForList<User>("Processing all users : ", _neo4JController.GetAllUsers());
+            ExecuteNeo4JActionForList<User>("Processed all users : ", _neo4JController.GetAllUsers());
         }
 
         private void GetAllUsersWhereNameStartWith(string name)
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            ExecuteNeo4JActionForList<User>(string.Format("Processing all Users where name starts with:{0} ",name), _neo4JController.GetAllUsersWhereNameStartsWith(name));
+            ExecuteNeo4JActionForList<User>(string.Format("Processed all Users where name starts with:{0} ",name), _neo4JController.GetAllUsersWhereNameStartsWith(name));
         }
 
         private void GetAllComments()
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            ExecuteNeo4JActionForList<Comment>("Processing all comments : ", _neo4JController.GetAllComments());
+            ExecuteNeo4JActionForList<Comment>("Processed all comments : ", _neo4JController.GetAllComments());
         }
 
         private void GetAllPositiveComments()
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            ExecuteNeo4JActionForList<Comment>("Processing all positive comments : ", _neo4JController.GetAllPositiveComments());
+            ExecuteNeo4JActionForList<Comment>("Processed all positive comments : ", _neo4JController.GetAllPositiveComments());
         }
 
         private void GetAllNegativeComments()
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
-            ExecuteNeo4JActionForList<Comment>("Processing all negative comments : ", _neo4JController.GetAllNegativeComments());
+            ExecuteNeo4JActionForList<Comment>("Processed all negative comments : ", _neo4JController.GetAllNegativeComments());
         }
 
         private void GetUserAvarageGrade()
@@ -265,7 +263,7 @@ namespace Neo4JController.Controllers
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var userGrateAvarage = _neo4JController.GetUsersAvarageGrade();
             _userAvarage = userGrateAvarage;
-            ExecuteNeo4JAction<float>("Procesing Avarage Grade : ", userGrateAvarage);
+            ExecuteNeo4JAction<float>("Processed Avarage Grade : ", userGrateAvarage);
         }
 
         private void GetLocationsThatHaveMoreThan10PositiveComments()
@@ -273,7 +271,7 @@ namespace Neo4JController.Controllers
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var locations = _neo4JController.GetAllLocationsWithMoreThanTenPositiveComments();
             _allPositiveLocations = new BindingList<Locatie>(locations);
-            ExecuteNeo4JActionForList<Locatie>("Processing all locations that have more than 10 positive comments : ", locations);
+            ExecuteNeo4JActionForList<Locatie>("Processed all locations that have more than 10 positive comments : ", locations);
         }
 
         private void GetLocationsThatHaveMoreThan10NegativeComments()
@@ -281,7 +279,7 @@ namespace Neo4JController.Controllers
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var locations = _neo4JController.GetAllLocationsWithMoreThanTenNegativeComments();
             _allNegativeLocations = new BindingList<Locatie>(locations);
-            ExecuteNeo4JActionForList<Locatie>("Processing all locations that have more than 10 negativs comments : ", locations);
+            ExecuteNeo4JActionForList<Locatie>("Processed all locations that have more than 10 negativs comments : ", locations);
         }
 
 
@@ -291,7 +289,7 @@ namespace Neo4JController.Controllers
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var locations = _neo4JController.GetAllLocationsWherNameStartsWith(nameStart);
             _allPositiveLocations = new BindingList<Locatie>(locations);
-            ExecuteNeo4JActionForList<Locatie>(string.Format("Procesing locations where name starts with : {0}", nameStart), locations);
+            ExecuteNeo4JActionForList<Locatie>(string.Format("Processed locations where name starts with : {0}", nameStart), locations);
             return locations;
         }
 
@@ -308,14 +306,14 @@ namespace Neo4JController.Controllers
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var locations = _neo4JController.GetLocationsWhereDescriptionContains(text);
-            ExecuteNeo4JActionForList<Locatie>(string.Format("Procesing locations where description contains : {0}", text), locations);
+            ExecuteNeo4JActionForList<Locatie>(string.Format("Processed locations where description contains : {0}", text), locations);
         }
 
         private void GetUserForLocation(Locatie locatie)
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var users = _neo4JController.GetAllUsersForLocation(locatie);
-            ExecuteNeo4JActionForList<User>(string.Format("Procesing locations where description contains : {0}", locatie.Nume), users);
+            ExecuteNeo4JActionForList<User>(string.Format("Processed locations where description contains : {0}", locatie.Nume), users);
         }
 
 
@@ -332,7 +330,7 @@ namespace Neo4JController.Controllers
         {
             _watch = System.Diagnostics.Stopwatch.StartNew();
             var users = _neo4JController.GetAllUsersWhereNameStartsWith(text);
-            ExecuteNeo4JActionForList<User>(string.Format("Procesing users where name starts with : {0}", text), users);
+            ExecuteNeo4JActionForList<User>(string.Format("Processed users where name starts with : {0}", text), users);
         }
 
         public void ClearTextFromTextBoxes()
@@ -359,10 +357,7 @@ namespace Neo4JController.Controllers
             if (list.Any())
             {
                 var type = list.FirstOrDefault().GetType().Name.ToString();
-                _view.AddToTextBox(string.Format("Results found: {0} for {1}", list.Count, type));
-                _printHelper.AddTextToBuilder(string.Format("Results found : {0} for", list.Count, type));
-                _view.AddToTextBox(string.Format("Elapsed time for getting all Results : {0} ms for", elapsedMs.ToString(),type));
-                _printHelper.AddTextToBuilder(string.Format("Done in {0} ms ", elapsedMs));
+                WriteInfo(string.Format("{0} {1}",actionMessage, list.Count));
             }
         }
 
@@ -371,10 +366,22 @@ namespace Neo4JController.Controllers
             _printHelper.AddTextToBuilder(actionMessage);
             _printHelper.AddTextToBuilder(obj.ToString());
             _watch.Stop();
+            WriteInfo(string.Format("{0} for {1}", actionMessage, obj.ToString()));
+        }
+
+        private void WriteInfo(string text) 
+        {
             var elapsedMs = _watch.ElapsedMilliseconds;
-            _printHelper.AddTextToBuilder(string.Format("Result found after {0}: {1}",actionMessage, obj.ToString()));
-            _view.AddToTextBox(string.Format("Result found after {0}: {1}",actionMessage, obj.ToString()));
-            _printHelper.AddTextToBuilder(string.Format("Done in {0} ms ", elapsedMs));
+            if (string.IsNullOrEmpty(text))
+            {
+                _printHelper.AddTextToBuilder(string.Format("Processing finised in {0} ms ", elapsedMs));
+            }
+            else
+            {
+                _view.AddToTextBox(text);
+                _printHelper.AddTextToBuilder(text);
+                _printHelper.AddTextToBuilder(string.Format("Done in {0} ms ", elapsedMs));
+            }
         }
     }
 }
