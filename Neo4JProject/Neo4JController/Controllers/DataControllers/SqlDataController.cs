@@ -10,193 +10,76 @@ namespace Neo4JController.Controllers
 {
     public class SqlDataController : IDisposable
     {
+        SqlOperations _sqlOperations;
+
         public SqlDataController()
         {
+            _sqlOperations = new SqlOperations();
         }
 
         public List<Locatie> GetAllLocations()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllLocations();
-                }
-            }
-            catch (Exception ex) 
-            {
-                return new List<Locatie>();
-            }
+            return _sqlOperations.GetAllLocations();
         }
 
         public List<User> GetAllUsers()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllUsers();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<User>();
-            }
+            return _sqlOperations.GetAllUsers();
         }
 
         public List<Comment> GetAllComments()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllComments();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<Comment>();
-            }
+            return _sqlOperations.GetAllComments();
         }
 
         public List<Locatie> GetAllLocationsWherNameStartsWith(string nameStart)
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllLocationsThatStartsWith(nameStart);
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<Locatie>();
-            }
+            return _sqlOperations.GetAllLocationsThatStartsWith(nameStart);
         }
 
-        public List<Locatie> GetAllLocationsWithMoreThanTenPositiveComments() 
+        public List<Locatie> GetAllLocationsWithMoreThanTenPositiveComments()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllLocationsWithMoreThanTenPositiveComments();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<Locatie>();
-            }
+            return _sqlOperations.GetAllLocationsWithMoreThanTenPositiveComments();
         }
 
         public List<Locatie> GetAllLocationsWithMoreThanTenNegativeComments()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllLocationsWithMoreThanTenNegativeComments();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<Locatie>();
-            }
+            return _sqlOperations.GetAllLocationsWithMoreThanTenNegativeComments();
         }
 
         public List<User> GetAllUsersWhereNameStartsWith(string nameStart)
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllUsersWhereNamesStartsWith(nameStart);
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<User>();
-            }
+            return _sqlOperations.GetAllUsersWhereNamesStartsWith(nameStart);
         }
 
         public List<User> GetAllUsersForLocation(Locatie location)
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllUsersForLocation(location);
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<User>();
-            }
+            return _sqlOperations.GetAllUsersForLocation(location);
         }
 
         public List<Comment> GetAllCommentsForUser(User user)
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllCommentsForUser(user);
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<Comment>();
-            }
+            return _sqlOperations.GetAllCommentsForUser(user);
         }
 
         public List<Comment> GetAllPositiveComments()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllCommentsWithPositiveReviews();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<Comment>();
-            }
+            return _sqlOperations.GetAllCommentsWithPositiveReviews();
         }
 
         public List<Comment> GetAllNegativeComments()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetAllCommentsWithNegativeReviews();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new List<Comment>();
-            }
+            return _sqlOperations.GetAllCommentsWithNegativeReviews();
         }
 
         public float GetUsersAvarageGrade()
         {
-            try
-            {
-                using (var sqlOperations = new SqlOperations())
-                {
-                    return sqlOperations.GetUserGradesAvarage();
-                }
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
+            return _sqlOperations.GetUserGradesAvarage();
         }
 
         public void Dispose()
         {
-
+            _sqlOperations.Dispose();
         }
     }
 }
