@@ -1,0 +1,4 @@
+*.exe
+Neo4JProject/Neo4J.View/bin/Debug/Neo4JService.pdb
+*.exe
+Neo4JProject/Neo4J.View/bin/Debug/TxtCrawler.pdb

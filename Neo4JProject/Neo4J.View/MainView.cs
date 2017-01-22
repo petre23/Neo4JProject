@@ -20,56 +20,7 @@ namespace Neo4J.View
         public MainView()
         {
             InitializeComponent();
-            //_controller = new MainViewController(this);
             _service = new Neo4JService.Neo4JService(this);
-        }
-
-        public Button BtnShowDatabaseGenerator
-        {
-            get
-            {
-                return btnDatabaseGenerator;
-            }
-            set
-            {
-                btnDatabaseGenerator = value;
-            }
-        }
-
-        public Button BtnStartAnalysis
-        {
-            get
-            {
-                return btnStartAnalysis;
-            }
-            set
-            {
-                btnStartAnalysis = value;
-            }
-        }
-
-        public TextBox TxtInfoLog
-        {
-            get
-            {
-                return txtInfoLog;
-            }
-            set
-            {
-                txtInfoLog = value;
-            }
-        }
-
-        public ProgressBar PgbNeo4JQuery
-        {
-            get
-            {
-                return pgbNeo4JQuery;
-            }
-            set
-            {
-                pgbNeo4JQuery = value;
-            }
         }
 
         private void btnDatabaseGenerator_Click(object sender, EventArgs e)
@@ -99,67 +50,6 @@ namespace Neo4J.View
                 }));
             });
             thread.Start();
-        }
-
-
-        public Label LblSearch
-        {
-            get
-            {
-                return lblSearch;
-            }
-            set
-            {
-                lblSearch = value;
-            }
-        }
-
-        public TextBox TxtSearchBox
-        {
-            get
-            {
-                return txtSearchBox;
-            }
-            set
-            {
-                txtSearchBox = value;
-            }
-        }
-
-        public ListBox LbNeo4JSearch
-        {
-            get
-            {
-                return lbNeo4JSearch;
-            }
-            set
-            {
-                lbNeo4JSearch = value;
-            }
-        }
-
-        public ListBox LbSqlSearch
-        {
-            get
-            {
-                return lbSQLSearch;
-            }
-            set
-            {
-                lbSQLSearch = value;
-            }
-        }
-
-        public Button BtnStartSearch
-        {
-            get
-            {
-                return btnStartSearch;
-            }
-            set
-            {
-                btnStartSearch = value;
-            }
         }
 
         private void btnStartSearch_Click(object sender, EventArgs e)
@@ -218,19 +108,6 @@ namespace Neo4J.View
             _service.ClearText();
         }
 
-
-        public Button BtnClearText
-        {
-            get
-            {
-                return btnClear;
-            }
-            set
-            {
-                btnClear = value;
-            }
-        }
-
         public void AddTextToBox(string text)
         {
             if (txtInfoLog.InvokeRequired)
@@ -260,7 +137,7 @@ namespace Neo4J.View
 
         private void txtSearchBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(TxtSearchBox.Text))
+            if (!string.IsNullOrEmpty(txtSearchBox.Text))
                 btnStartVersusForLocation.Enabled = true;
             else
                 btnStartVersusForLocation.Enabled = false;
@@ -278,17 +155,33 @@ namespace Neo4J.View
             }
         }
 
-
-        public Button BtnStartVersusForLocation
+        public bool IsSearchBoxEmpty()
         {
-            get
+            var returnValue = false;
+            if (string.IsNullOrEmpty(txtSearchBox.Text))
             {
-                return btnStartVersusForLocation;
+                this.InfoMessage("Please insert text in search field !");
+                this.btnClear.Enabled = false;
+                returnValue = true;
             }
-            set
+            else
             {
-                btnStartVersusForLocation = value;
+                btnClear.Enabled = true;
             }
+            return returnValue;
+        }
+
+        public string GetSearchText()
+        {
+            return txtSearchBox.Text;
+        }
+
+        public void ClearView() 
+        {
+            lbNeo4JSearch.Items.Clear();
+            lbSQLSearch.Items.Clear();
+            txtSearchBox.Clear();
+            btnClear.Enabled = false;
         }
     }
 }

@@ -36,26 +36,19 @@ namespace Neo4JController.Controllers
 
         public void StartNeo4JvSqlSearch() 
         {
-            if (string.IsNullOrEmpty(_view.TxtSearchBox.Text))
+            if (_view.IsSearchBoxEmpty())
             {
-                _view.InfoMessage("Please insert text in search field !");
-                _view.BtnClearText.Enabled = false;
-                return;
-            }
-            else
-            {
-                _view.BtnClearText.Enabled = true;
-                var neo4JSerchText = _view.TxtSearchBox.Text;
-                var sqlSerchText = _view.TxtSearchBox.Text;
+                var neo4JSerchText = _view.GetSearchText();
+                var sqlSerchText = _view.GetSearchText();
 
                 var neo4JSearchThread = new Thread(() =>
                 {
                     var watch = System.Diagnostics.Stopwatch.StartNew();
-                    var locations =  _neo4JController.GetAllLocationsWherNameStartsWith(neo4JSerchText);
+                    var locations = _neo4JController.GetAllLocationsWherNameStartsWith(neo4JSerchText);
                     watch.Stop();
                     var elapsedMs = watch.ElapsedMilliseconds;
                     _view.AddTextNeo4JListBoxThreadSafe(string.Format("Found {0} locations", locations.Count.ToString()));
-                    _view.AddTextNeo4JListBoxThreadSafe(string.Format("Done in {0} ms",elapsedMs.ToString()));
+                    _view.AddTextNeo4JListBoxThreadSafe(string.Format("Done in {0} ms", elapsedMs.ToString()));
                 });
 
                 var sqlSearchThread = new Thread(() =>
@@ -439,10 +432,7 @@ namespace Neo4JController.Controllers
 
         public void ClearTextFromTextBoxes()
         {
-            _view.LbNeo4JSearch.Items.Clear();
-            _view.LbSqlSearch.Items.Clear();
-            _view.TxtSearchBox.Clear();
-            _view.BtnClearText.Enabled = false;
+            _view.ClearView();
         }
     }
 }
