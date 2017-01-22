@@ -8,73 +8,195 @@ using System.Threading.Tasks;
 
 namespace Neo4JController.Controllers
 {
-    public class SqlDataController
+    public class SqlDataController : IDisposable
     {
-        SqlOperations _sqlOperations;
-
-        public SqlDataController() 
+        public SqlDataController()
         {
-            _sqlOperations = new SqlOperations();
         }
 
         public List<Locatie> GetAllLocations()
         {
-            return _sqlOperations.GetAllLocations();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllLocations();
+                }
+            }
+            catch (Exception ex) 
+            {
+                return new List<Locatie>();
+            }
         }
 
         public List<User> GetAllUsers()
         {
-            return _sqlOperations.GetAllUsers();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllUsers();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<User>();
+            }
         }
 
         public List<Comment> GetAllComments()
         {
-            return _sqlOperations.GetAllComments();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllComments();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Comment>();
+            }
         }
 
         public List<Locatie> GetAllLocationsWherNameStartsWith(string nameStart)
         {
-            return _sqlOperations.GetAllLocationsThatStartsWith(nameStart);
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllLocationsThatStartsWith(nameStart);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Locatie>();
+            }
         }
 
         public List<Locatie> GetAllLocationsWithMoreThanTenPositiveComments() 
         {
-            return _sqlOperations.GetAllLocationsWithMoreThanTenPositiveComments();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllLocationsWithMoreThanTenPositiveComments();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Locatie>();
+            }
         }
 
         public List<Locatie> GetAllLocationsWithMoreThanTenNegativeComments()
         {
-            return _sqlOperations.GetAllLocationsWithMoreThanTenNegativeComments();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllLocationsWithMoreThanTenNegativeComments();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Locatie>();
+            }
         }
 
         public List<User> GetAllUsersWhereNameStartsWith(string nameStart)
         {
-            return _sqlOperations.GetAllUsersWhereNamesStartsWith(nameStart);
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllUsersWhereNamesStartsWith(nameStart);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<User>();
+            }
         }
 
         public List<User> GetAllUsersForLocation(Locatie location)
         {
-            return _sqlOperations.GetAllUsersForLocation(location);
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllUsersForLocation(location);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<User>();
+            }
         }
 
         public List<Comment> GetAllCommentsForUser(User user)
         {
-            return _sqlOperations.GetAllCommentsForUser(user);
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllCommentsForUser(user);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Comment>();
+            }
         }
 
         public List<Comment> GetAllPositiveComments()
         {
-            return _sqlOperations.GetAllCommentsWithPositiveReviews();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllCommentsWithPositiveReviews();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Comment>();
+            }
         }
 
         public List<Comment> GetAllNegativeComments()
         {
-            return _sqlOperations.GetAllCommentsWithNegativeReviews();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetAllCommentsWithNegativeReviews();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Comment>();
+            }
         }
 
         public float GetUsersAvarageGrade()
         {
-            return _sqlOperations.GetUserGradesAvarage();
+            try
+            {
+                using (var sqlOperations = new SqlOperations())
+                {
+                    return sqlOperations.GetUserGradesAvarage();
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public void Dispose()
+        {
+
         }
     }
 }

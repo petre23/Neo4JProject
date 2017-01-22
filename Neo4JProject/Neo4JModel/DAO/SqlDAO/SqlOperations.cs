@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Neo4JModel.DAO.SqlDAO
 {
-    public class SqlOperations
+    public class SqlOperations : IDisposable
     {
-        private SqlConnection _connection ;
+        private SqlConnection _connection;
         private string _connectionString
         {
             get { return Neo4JModel.Properties.Settings.Default.ConnectionString; }
@@ -374,6 +374,11 @@ namespace Neo4JModel.DAO.SqlDAO
             {
                 return null;
             }
+        }
+
+        public void Dispose()
+        {
+            _connection.Dispose();
         }
     }
 }

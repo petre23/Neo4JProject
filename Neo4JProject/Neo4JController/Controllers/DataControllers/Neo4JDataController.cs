@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Neo4JController.Controllers
 {
-    public class Neo4JDataController
+    public class Neo4JDataController : IDisposable
     {
         LocatieDAO _locatieDAO;
         UserDAO _userDAO;
@@ -105,6 +105,16 @@ namespace Neo4JController.Controllers
         public List<Locatie> GetAllLocationsWithMoreThanTenNegativeComments()
         {
             return _locationUserDAO.GetLocationsThatHaveTenNegativeComments();
+        }
+
+        public void Dispose()
+        {
+            _locatieDAO = null;
+            _userDAO = null;
+            _commentDAO = null;
+            _roomDAO = null;
+            _commentUserDAO = null;
+            _locationUserDAO = null;
         }
     }
 }
